@@ -28,3 +28,15 @@ import Theme from "../global/Theme.astro";
   if you are going to use a footer, it should go here
    -->
 </body>
+
+<style is:global>
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  main {
+    flex: 1;
+  }
+</style>

@@ -5,15 +5,16 @@ import "@fontsource/karla";
 ---
 
 <style is:global>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Manufacturing+Consent&display=swap');
   /* We can use this style tag to set up colors, fonts, etc. */
   :root {
-    --color-background: rgb(24, 0, 24);
+    --color-background: rgb(0, 0, 0);
     --color-text: rgb(240, 240, 240);
-    --color-accent: rgb(0, 200, 255);
+    --color-accent: rgb(255, 255, 255);
     --color-focus-ring: rgb(255, 0, 255);
 
-    --font-body: "Karla", sans-serif;
-    --font-headings: "Karla", sans-serif;
+    --font-body: "DM Sans", sans-serif;
+    --font-headings: "Libre Baskerville", serif;
 
     font-size: 18px;
 
@@ -34,6 +35,7 @@ import "@fontsource/karla";
   h4,
   h5,
   h6 {
+    font-family: var(--font-headings);
     color: var(--color-accent);
   }
 

@@ -9,9 +9,48 @@ import { Image } from "astro:assets";
 
 <Layout title="Astro Starter">
   <Container>
-    <Image src={AstroLogo} alt="" />
-    <h1>a simple Astro Starter Kit</h1>
-    <SampleComponent text="This is a sample component!" />
-    <SampleMarkdown />
+    <div class="body"> 
+    <div class="heading"> 
+      <h1> Frankenstein & The Right to Bodily Sovereignty</h1>
+      <a class="button" href="/reading">Read</a>
+    </div>
+    </div>
   </Container>
 </Layout>
+
+<style>
+  .body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .heading{
+    width: 642px;
+  }
+  h1{
+    font-size: 64px;
+  }
+  .button{
+    background-color: rgb(80,21,55);
+    padding: 4px 40px;
+    border-radius: 15px;
+  }
+
+  a:link, a:visited{
+    color: white;
+    font-family: var(--font-heading);
+    text-decoration: none;
+  }
+  a:hover{
+  color: rgb(190, 190, 190);
+}
+
+  .button:hover{
+  background-color: rgb(0, 58, 24);
+  padding: 6.5px 65px;
+  border-radius: 22.5px;
+  transition: padding .2s;
+  }
+</style>
