@@ -1,17 +1,252 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import Container from "@components/Container.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 ---
 
-<Header/> 
-<Layout title="Astro Starter">
-  <Container>
-    <div class="heading"> 
-      <h1> Bodily Sovereignty</h1>
+<Layout title="Bodily Sovereignty">
+ 
 
-    </div>
-  </Container>
+  <Header />
+
+  <main id="top">
+    <!-- HERO  -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="layered-heading">
+          <span class="bg-blackletter" aria-hidden="true">
+            Bodily<br />Sovereignty
+          </span>
+          <h1 class="fg-serif">
+            Bodily<br />Sovereignty
+          </h1>
+        </div>
+
+        <p class="hero-tagline">We need to appreciate our women more.</p>
+      </div>
+    </section>
+
+    <!-- MARY SHELLEY SECTION -->
+    <section id="shelley" class="editorial-band band-sage">
+      <div class="band-inner">
+        <h2 class="band-title">
+          <span>Mary</span>
+          <span>Shelley</span>
+        </h2>
+        <p class="band-copy">
+          Shelley grew up without a mother leaving her to navigate a world that
+          does not like independent women alone. Following this her life was
+          full of grief, including the loss of three children and the drowning
+          of her husband. On top of this, she was not credited for her writing
+          initially since it was acceptable for women to be writers. Despite
+          all of these setbacks, she endured and became recognized as a
+          brilliant writer, reshaping literature and philosophy. Ultimately,
+          Frankenstein is a timeless tale when analyzed under a feminine lens.
+        </p>
+      </div>
+    </section>
+
+    <!-- SUMITA KAUR SECTION -->
+    <section id="kaur" class="editorial-band band-olive">
+      <div class="band-inner">
+        <h2 class="band-title">
+          <span>Sumita</span>
+          <span>Kaur</span>
+        </h2>
+        <p class="band-copy">
+          Sumita Kaur’s 2025 essay argues that bodily autonomy is the foundation
+          necessary for women’s empowerment. It is more than just reproductive
+          rights; it is the right to self-sovereignty, freedom from cultural
+          conditioning, and personal agency. Women are conditioned to feel that
+          their bodies are not truly their own but something meant to be
+          controlled. Victor views the natural world and his creation as objects
+          to be manipulated but ultimately abandons them when they fail to
+          conform to his expectations.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONCLUSION SECTION -->
+    <section id="conclusion" class="conclusion-band">
+      <div class="conclusion-inner">
+        <p>
+          Mary Shelley’s life of profound grief and systemic marginalization
+          directly informed Frankenstein, and when viewed through a modern
+          feminist lens, the novel serves as an exploration of bodily autonomy,
+          self-sovereignty, and the dangers of patriarchal control.
+        </p>
+        <p>
+          Just as Shelley navigated a world hostile to independent women, the
+          monster is brought into existence without consent and ultimately
+          abandoned when he fails to conform to his creator’s expectations. Kaur
+          connects this dynamic to the broader argument that true women’s
+          empowerment requires total freedom from cultural conditioning and
+          ownership over one’s own existence, drawing a direct parallel between
+          Victor Frankenstein’s desire to conquer nature and society’s historic
+          impulse to control women’s bodies and autonomy.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
 </Layout>
-<Footer/>
+
+<style is:global>
+  :root {
+    --plum-dark: #381028;
+    --plum-ink: #2b0917;
+    --black-bg: #050505;
+    --sage-bg: #466346;
+    --olive-bg: #6a7b33;
+    --off-white: #ecefe9;
+
+    --font-gothic: "Manufacturing Consent", serif;
+    --font-serif: "Libre Baskerville", serif;
+    --font-sans: "DM Sans", sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--black-bg);
+    color: var(--off-white);
+    font-family: var(--font-sans);
+  }
+
+  body {
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  /* Header & Footer fallback/theme helpers */
+  header,
+  footer {
+    background-color: var(--plum-dark);
+    color: var(--off-white);
+    width: 100%;
+  }
+
+  /* 1. Hero */
+  .hero {
+    background-color: var(--black-bg);
+    padding: clamp(3rem, 7vw, 5.5rem) clamp(1.5rem, 6vw, 5rem)
+      clamp(4.5rem, 9vw, 7.5rem);
+  }
+
+  .hero-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .layered-heading {
+    position: relative;
+    display: inline-block;
+    margin-bottom: clamp(4rem, 9vw, 7.5rem);
+  }
+
+  .bg-blackletter {
+    display: block;
+    font-family: var(--font-gothic);
+    font-size: clamp(4.2rem, 11.5vw, 10.5rem);
+    line-height: 0.92;
+    color: var(--plum-dark);
+    user-select: none;
+  }
+
+  .fg-serif {
+    position: absolute;
+    top: 32%;
+    left: 23%;
+    font-family: var(--font-serif);
+    font-size: clamp(1.6rem, 3.6vw, 3.3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #ffffff;
+    white-space: nowrap;
+  }
+
+  .hero-tagline {
+    text-align: center;
+    font-family: var(--font-serif);
+    font-size: clamp(1.1rem, 2.1vw, 1.85rem);
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  /* 2 & 3. Editorial Color Bands (Shelley & Kaur) */
+  .editorial-band {
+    width: 100%;
+    padding: clamp(4.5rem, 10vw, 8.5rem) clamp(2rem, 7vw, 6rem);
+  }
+
+  .band-sage {
+    background-color: var(--sage-bg);
+  }
+
+  .band-olive {
+    background-color: var(--olive-bg);
+  }
+
+  .band-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    align-items: center;
+    gap: clamp(2rem, 6vw, 6rem);
+  }
+
+  .band-title {
+    font-family: var(--font-gothic);
+    font-size: clamp(4.2rem, 9vw, 8.2rem);
+    font-weight: 400;
+    line-height: 0.94;
+    color: var(--plum-ink);
+  }
+
+  .band-title span {
+    display: block;
+  }
+
+  .band-copy {
+    font-size: clamp(0.88rem, 1.05vw, 1rem);
+    line-height: 1.5;
+    color: var(--off-white);
+    max-width: 43ch;
+  }
+
+  /* 4. Conclusion Section */
+  .conclusion-band {
+    background-color: var(--black-bg);
+    padding: clamp(5rem, 11vw, 9rem) clamp(1.75rem, 6vw, 4rem);
+  }
+
+  .conclusion-inner {
+    max-width: 58ch;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    font-size: clamp(0.92rem, 1.1vw, 1.05rem);
+    line-height: 1.6;
+    color: var(--off-white);
+  }
+
+  /* Responsive Stacking */
+  @media (max-width: 820px) {
+    .band-inner {
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+    }
+
+    .fg-serif {
+      left: 16%;
+    }
+  }
+</style>
