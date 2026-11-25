@@ -1,56 +1,175 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import SampleComponent from "@components/SampleComponent.astro";
-import Container from "@components/Container.astro";
-import AstroLogo from "@assets/images/astro-logo-light-gradient.png";
-import { Content as SampleMarkdown } from "@content/sample-markdown.md";
-import { Image } from "astro:assets";
+import LetterCollage from "@assets/images/letter-collage.png";
 ---
 
-<Layout title="Astro Starter">
-  <Container>
-    <div class="body"> 
-    <div class="heading"> 
-      <h1> Frankenstein & The Right to Bodily Sovereignty</h1>
-      <a class="button" href="/reading">Read</a>
+<Layout title="Frankenstein & The Right to Bodily Sovereignty">
+
+  
+  <main class="landing-grid">
+    <!-- 1. Left Column: Full-height flush PNG collage -->
+    <div class="collage-col">
+      <img
+        src="../assets/images/letter-collage.png"
+        alt="Typographic letter collage"
+        class="collage-img"
+        loading="eager"
+      />
     </div>
+
+    <!-- 2. Center Column: Vertical rotated FRANKENSTEIN -->
+    <div class="vertical-col">
+      <span class="vertical-title">FRANKENSTEIN</span>
     </div>
-  </Container>
+
+    <!-- 3. Right Column: Stacked subtitle + Read pill button -->
+    <div class="content-col">
+      <div class="heading-block">
+        <h1>
+          <span class="sr-only">Frankenstein </span>
+          &amp; The Right<br />
+          to Bodily<br />
+          Sovereignty
+        </h1>
+        <a class="button" href="/reading">Read</a>
+      </div>
+    </div>
+  </main>
 </Layout>
 
 <style>
-  .body{
+  .landing-grid {
+    --font-heading: "DM Sans", Black, sans-serif;
+    --font-body: "DM Sans", sans-serif;
+
+    background-color: #050505;
+    color: #ffffff;
+    font-family: var(--font-body);
+    min-height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(260px, 38vw) auto 1fr;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Left PNG Collage */
+  .collage-col {
+    height: 100vh;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .collage-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+    display: block;
+  }
+
+  /* Center Vertical Spine */
+  .vertical-col {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1.5rem clamp(1.25rem, 3.5vw, 3.5rem);
   }
 
-  .heading{
-    width: 642px;
-  }
-  h1{
-    font-size: 64px;
-  }
-  .button{
-    background-color: rgb(80,21,55);
-    padding: 4px 40px;
-    border-radius: 15px;
+  .vertical-title {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: var(--font-heading);
+    font-size: clamp(2.1rem, 4.4vh, 3.4rem);
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #ffffff;
+    white-space: nowrap;
+    user-select: none;
   }
 
-  a:link, a:visited{
-    color: white;
+  /* Right Heading & Button */
+  .content-col {
+    padding: 2rem clamp(1.5rem, 5vw, 5rem);
+    display: flex;
+    align-items: center;
+  }
+
+  .heading-block {
+    max-width: 642px;
+  }
+
+  h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2.4rem, 4.3vw, 4rem);
+    font-weight: 700;
+    line-height: 1.08;
+    margin: 0 0 1.35rem 0;
+    color: #ffffff;
+  }
+
+  .button {
+    display: inline-block;
+    background-color: rgb(80, 21, 55);
+    padding: 6px 42px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease, padding 0.2s ease, border-radius 0.2s ease;
+  }
+
+  .button:link,
+  .button:visited {
+    color: #ffffff;
     font-family: var(--font-heading);
     text-decoration: none;
   }
-  a:hover{
-  color: rgb(190, 190, 190);
-}
 
-  .button:hover{
-  background-color: rgb(0, 58, 24);
-  padding: 6.5px 65px;
-  border-radius: 22.5px;
-  transition: padding .2s;
+  .button:hover {
+    color: rgb(190, 190, 190);
+    background-color: rgb(0, 58, 24);
+    padding: 8px 65px;
+    border-radius: 999px;
+  }
+
+  /* Keeps "Frankenstein" intact for screen readers & SEO */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  /* Mobile / Narrow Screen Stack */
+  @media (max-width: 820px) {
+    .landing-grid {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+
+    .collage-col {
+      height: 38vh;
+    }
+
+    .vertical-col {
+      height: auto;
+      padding: 2rem 1.5rem 0.5rem;
+      justify-content: flex-start;
+    }
+
+    .vertical-title {
+      writing-mode: horizontal-tb;
+      transform: none;
+      font-size: 1.75rem;
+      letter-spacing: 0.2em;
+    }
+
+    .content-col {
+      padding: 1rem 1.5rem 3.5rem;
+    }
   }
 </style>

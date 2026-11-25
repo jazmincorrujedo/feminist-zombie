@@ -2,95 +2,129 @@
 import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
+import LetterCollage from "../assets/images/letter-collage.png";
+
+const cards = [
+  {
+    id: "shelley",
+    lines: ["Mary", "Shelley"],
+    paragraphs: [
+      "Mary Shelley wrote Frankenstein in 1816. Shelley grew up without a mother leaving her to navigate a world that does not like independent women alone. Following this her life was full of grief, including the loss of three children and the drowning of her husband. On top of this, she was not credited for her writing initially since it was acceptable for women to be writers. Despite all of these setbacks, she endured and became recognized as a brilliant writer, reshaping literature and philosophy. Ultimately, Frankenstein is a timeless tale when analyzed under a feminine lens.",
+    ],
+  },
+  {
+    id: "kaur",
+    lines: ["Sumita", "Kaur"],
+    paragraphs: [
+      "Sumita Kaur’s 2025 essay argues that bodily autonomy is the foundation necessary for women’s empowerment. It is more than just reproductive rights; it is the right to self-sovereignty, freedom from cultural conditioning, and personal agency. Women are conditioned to feel that their bodies are not truly their own but something meant to be controlled. Victor views the natural world and his creation as objects to be manipulated but ultimately abandons them when they fail to conform to his expectations.",
+    ],
+  },
+  {
+    id: "pairing",
+    lines: ["This", "Pairing"],
+    paragraphs: [
+      "Mary Shelley’s life of profound grief and systemic marginalization directly informed Frankenstein. When viewing the literary text through a modern feminist lens, the novel serves as an exploration of bodily autonomy, self-sovereignty, and the dangers of patriarchal control.",
+      "Just as Shelley navigated a world hostile to independent women, the monster is brought into existence without consent and ultimately abandoned when he fails to conform to his creator’s expectations. Kaur connects this dynamic to the broader argument that true women’s empowerment requires total freedom from cultural conditioning and ownership over one’s own existence, drawing a direct parallel between Victor Frankenstein’s desire to conquer nature and society’s historic impulse to control women’s bodies and autonomy.",
+    ],
+  },
+];
 ---
 
-<Layout title="Bodily Sovereignty">
- 
-
+<Layout title="About — Bodily Sovereignty">
   <Header />
 
-  <main id="top">
-    <!-- HERO  -->
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="layered-heading">
-          <span class="bg-blackletter" aria-hidden="true">
-            Bodily<br />Sovereignty
-          </span>
-          <h1 class="fg-serif">
-            Bodily<br />Sovereignty
-          </h1>
+  <main
+    class="about-page"
+    style={`--collage-url: url("${LetterCollage.src}");`}
+  >
+    <div class="about-overlay">
+      <header class="about-header">
+        <h1 class="about-title">About</h1>
+      </header>
+
+      <div class="about-divider" aria-hidden="true"></div>
+
+      <section class="about-grid">
+        <div class="about-lead">
+          <p>The writers<br />and website!</p>
         </div>
 
-        <p class="hero-tagline">We need to appreciate our women more.</p>
-      </div>
-    </section>
+        <div class="about-cards">
+          {cards.map((card) => (
+            <button
+              type="button"
+              class="about-card"
+              data-modal-target={`modal-${card.id}`}
+              aria-haspopup="dialog"
+              aria-controls={`modal-${card.id}`}
+            >
+              <span>
+                {card.lines[0]}<br />{card.lines[1]}
+              </span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </div>
 
-    <!-- MARY SHELLEY SECTION -->
-    <section id="shelley" class="editorial-band band-sage">
-      <div class="band-inner">
-        <h2 class="band-title">
-          <span>Mary</span>
-          <span>Shelley</span>
-        </h2>
-        <p class="band-copy">
-          Shelley grew up without a mother leaving her to navigate a world that
-          does not like independent women alone. Following this her life was
-          full of grief, including the loss of three children and the drowning
-          of her husband. On top of this, she was not credited for her writing
-          initially since it was acceptable for women to be writers. Despite
-          all of these setbacks, she endured and became recognized as a
-          brilliant writer, reshaping literature and philosophy. Ultimately,
-          Frankenstein is a timeless tale when analyzed under a feminine lens.
-        </p>
-      </div>
-    </section>
+    <!-- Popup Modals -->
+    {cards.map((card) => (
+      <dialog
+        id={`modal-${card.id}`}
+        class="popup-dialog"
+        aria-label={card.lines.join(" ")}
+      >
+        <div class="popup-card">
+          <button
+            type="button"
+            class="popup-close"
+            aria-label={`Close ${card.lines.join(" ")} popup`}
+          >
+            &#10006;
+          </button>
 
-    <!-- SUMITA KAUR SECTION -->
-    <section id="kaur" class="editorial-band band-olive">
-      <div class="band-inner">
-        <h2 class="band-title">
-          <span>Sumita</span>
-          <span>Kaur</span>
-        </h2>
-        <p class="band-copy">
-          Sumita Kaur’s 2025 essay argues that bodily autonomy is the foundation
-          necessary for women’s empowerment. It is more than just reproductive
-          rights; it is the right to self-sovereignty, freedom from cultural
-          conditioning, and personal agency. Women are conditioned to feel that
-          their bodies are not truly their own but something meant to be
-          controlled. Victor views the natural world and his creation as objects
-          to be manipulated but ultimately abandons them when they fail to
-          conform to his expectations.
-        </p>
-      </div>
-    </section>
-
-    <!-- CONCLUSION SECTION -->
-    <section id="conclusion" class="conclusion-band">
-      <div class="conclusion-inner">
-        <p>
-          Mary Shelley’s life of profound grief and systemic marginalization
-          directly informed Frankenstein, and when viewed through a modern
-          feminist lens, the novel serves as an exploration of bodily autonomy,
-          self-sovereignty, and the dangers of patriarchal control.
-        </p>
-        <p>
-          Just as Shelley navigated a world hostile to independent women, the
-          monster is brought into existence without consent and ultimately
-          abandoned when he fails to conform to his creator’s expectations. Kaur
-          connects this dynamic to the broader argument that true women’s
-          empowerment requires total freedom from cultural conditioning and
-          ownership over one’s own existence, drawing a direct parallel between
-          Victor Frankenstein’s desire to conquer nature and society’s historic
-          impulse to control women’s bodies and autonomy.
-        </p>
-      </div>
-    </section>
+          <div class="popup-body">
+            {card.paragraphs.map((text) => (
+              <p>{text}</p>
+            ))}
+          </div>
+        </div>
+      </dialog>
+    ))}
   </main>
 
   <Footer />
 </Layout>
+
+<script>
+  const triggers = document.querySelectorAll<HTMLButtonElement>("[data-modal-target]");
+  const dialogs = document.querySelectorAll<HTMLDialogElement>("dialog.popup-dialog");
+
+  triggers.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const targetId = btn.getAttribute("data-modal-target");
+      if (!targetId) return;
+      const dialog = document.getElementById(targetId) as HTMLDialogElement | null;
+      if (dialog && typeof dialog.showModal === "function") {
+        dialog.showModal();
+      }
+    });
+  });
+
+  dialogs.forEach((dialog) => {
+    const closeBtn = dialog.querySelector<HTMLButtonElement>(".popup-close");
+
+    closeBtn?.addEventListener("click", () => {
+      dialog.close();
+    });
+
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) {
+        dialog.close();
+      }
+    });
+  });
+</script>
 
 <style is:global>
   :root {
@@ -100,6 +134,7 @@ import Footer from "@components/Footer.astro";
     --sage-bg: #466346;
     --olive-bg: #6a7b33;
     --off-white: #ecefe9;
+    --neon-green: #00ff1a;
 
     --font-gothic: "Manufacturing Consent", serif;
     --font-serif: "Libre Baskerville", serif;
@@ -124,7 +159,6 @@ import Footer from "@components/Footer.astro";
     overflow-x: hidden;
   }
 
-  /* Header & Footer fallback/theme helpers */
   header,
   footer {
     background-color: var(--plum-dark);
@@ -132,121 +166,195 @@ import Footer from "@components/Footer.astro";
     width: 100%;
   }
 
-  /* 1. Hero */
-  .hero {
-    background-color: var(--black-bg);
-    padding: clamp(3rem, 7vw, 5.5rem) clamp(1.5rem, 6vw, 5rem)
-      clamp(4.5rem, 9vw, 7.5rem);
-  }
-
-  .hero-inner {
-    max-width: 1180px;
-    margin: 0 auto;
-  }
-
-  .layered-heading {
+  .about-page {
     position: relative;
-    display: inline-block;
-    margin-bottom: clamp(4rem, 9vw, 7.5rem);
-  }
-
-  .bg-blackletter {
-    display: block;
-    font-family: var(--font-gothic);
-    font-size: clamp(4.2rem, 11.5vw, 10.5rem);
-    line-height: 0.92;
-    color: var(--plum-dark);
-    user-select: none;
-  }
-
-  .fg-serif {
-    position: absolute;
-    top: 32%;
-    left: 23%;
-    font-family: var(--font-serif);
-    font-size: clamp(1.6rem, 3.6vw, 3.3rem);
-    font-weight: 700;
-    line-height: 1.15;
-    color: #ffffff;
-    white-space: nowrap;
-  }
-
-  .hero-tagline {
-    text-align: center;
-    font-family: var(--font-serif);
-    font-size: clamp(1.1rem, 2.1vw, 1.85rem);
-    font-weight: 700;
-    color: #ffffff;
-  }
-
-  /* 2 & 3. Editorial Color Bands (Shelley & Kaur) */
-  .editorial-band {
-    width: 100%;
-    padding: clamp(4.5rem, 10vw, 8.5rem) clamp(2rem, 7vw, 6rem);
-  }
-
-  .band-sage {
-    background-color: var(--sage-bg);
-  }
-
-  .band-olive {
-    background-color: var(--olive-bg);
-  }
-
-  .band-inner {
-    max-width: 1140px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1.15fr 1fr;
-    align-items: center;
-    gap: clamp(2rem, 6vw, 6rem);
-  }
-
-  .band-title {
-    font-family: var(--font-gothic);
-    font-size: clamp(4.2rem, 9vw, 8.2rem);
-    font-weight: 400;
-    line-height: 0.94;
-    color: var(--plum-ink);
-  }
-
-  .band-title span {
-    display: block;
-  }
-
-  .band-copy {
-    font-size: clamp(0.88rem, 1.05vw, 1rem);
-    line-height: 1.5;
-    color: var(--off-white);
-    max-width: 43ch;
-  }
-
-  /* 4. Conclusion Section */
-  .conclusion-band {
     background-color: var(--black-bg);
-    padding: clamp(5rem, 11vw, 9rem) clamp(1.75rem, 6vw, 4rem);
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
   }
 
-  .conclusion-inner {
-    max-width: 58ch;
+  .about-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--plum-dark);
+    background-image: var(--collage-url);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: cover;
+    background-blend-mode: multiply;
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .about-overlay {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .about-header {
+    padding: clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2rem, 4.5vw, 3.25rem);
+    text-align: center;
+  }
+
+  .about-title {
+    font-family: var(--font-gothic);
+    font-size: clamp(3.2rem, 6.5vw, 5.2rem);
+    font-weight: 400;
+    line-height: 1;
+    color: #ffffff;
+  }
+
+  .about-divider {
+    width: 100%;
+    border-top: 6px dashed var(--neon-green);
+  }
+
+  .about-grid {
+    max-width: 1040px;
     margin: 0 auto;
+    padding: clamp(2.5rem, 6vw, 4.5rem) clamp(2rem, 6vw, 4rem)
+      clamp(4rem, 8vw, 6rem);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    justify-items: center;
+    gap: clamp(2rem, 6vw, 4.5rem);
+  }
+
+  .about-lead {
+    width: 100%;
+    max-width: 320px;
+    padding-top: clamp(1rem, 3vw, 2.5rem);
+    font-family: var(--font-sans);
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    font-weight: 700;
+    line-height: 1.22;
+    color: #ffffff;
+  }
+
+  .about-cards {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1.75rem;
-    font-size: clamp(0.92rem, 1.1vw, 1.05rem);
-    line-height: 1.6;
-    color: var(--off-white);
+    gap: clamp(2rem, 4.5vw, 3.25rem);
+    align-items: center;
   }
 
-  /* Responsive Stacking */
+  .about-card {
+    position: relative;
+    width: min(100%, 380px);
+    aspect-ratio: 1 / 1;
+    background-color: var(--sage-bg);
+    color: #ffffff;
+    border: 2px solid transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem;
+    font-family: var(--font-sans);
+    font-size: clamp(2.1rem, 4.2vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.12;
+    transition:
+      transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.22s ease,
+      box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.22s ease;
+  }
+
+  .about-card:hover,
+  .about-card:focus-visible {
+    background-color: var(--olive-bg);
+    border-color: var(--neon-green);
+    transform: translate(-6px, -6px);
+    box-shadow: 10px 10px 0px var(--plum-dark);
+    outline: none;
+  }
+
+  .about-card:active {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--plum-dark);
+  }
+
+  .popup-dialog {
+    margin: auto;
+    border: none;
+    background: transparent;
+    padding: 1.25rem;
+    max-width: min(92vw, 460px);
+    width: 100%;
+    overflow: visible;
+  }
+
+  .popup-dialog::backdrop {
+    background-color: rgba(5, 5, 5, 0.72);
+    backdrop-filter: blur(2px);
+  }
+
+  .popup-card {
+    position: relative;
+    background-color: var(--olive-bg);
+    color: var(--off-white);
+    padding: 3rem 2.25rem 2.25rem;
+    width: 100%;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+  }
+
+  .popup-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    background: transparent;
+    color: #090c06;
+    font-size: 1.35rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+
+  .popup-close:hover {
+    transform: scale(1.12);
+    opacity: 0.75;
+  }
+
+  .popup-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    line-height: 1.48;
+    color: #f3f5ef;
+  }
+
   @media (max-width: 820px) {
-    .band-inner {
+    .about-grid {
       grid-template-columns: 1fr;
-      gap: 2.25rem;
+      gap: 2.5rem;
     }
 
-    .fg-serif {
-      left: 16%;
+    .about-lead {
+      padding-top: 0;
+    }
+
+    .about-card {
+      width: min(100%, 340px);
+    }
+
+    .popup-card {
+      padding: 2.75rem 1.5rem 1.75rem;
     }
   }
 </style>
